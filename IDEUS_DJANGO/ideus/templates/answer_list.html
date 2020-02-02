@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>{{ title }}|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--모델 종류-->
+<div class="Square"> 
+	<h22>
+        <a href="/list/question/{{ subject }}/{{ sorting }}">질문   |   </a>
+        답변   |   
+        <a href="/list/result/{{ subject }}/{{ sorting }}">결과물   </a>|   
+    </h22>
+</div>
+<!--태그박스-->
+<div class="Square"> 
+	<h22>
+        {% if subject == 'all' %}
+            모두   |   
+        {% else %}
+            <a href="/list/answer/all/{{ sorting }}">모두   |   </a>
+        {% endif %}
+        
+        {% for key, value in subject_dict %}
+            {% if subject == key %}
+                {{ value }}   |   
+            {% else %}
+                <a href="/list/answer/{{ key }}/{{ sorting }}">{{ value }}   </a>|   
+            {% endif %}
+        {% endfor %}
+    </h22>
+</div>
+<!--정렬기준-->
+<div class="Square">
+    <h22>
+        {% if sorting == 'my' %}
+            내가 쓴 글   |   
+        {% else %}
+            <a href="/list/answer/{{ subject }}/my">내가 쓴 글   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'mylikes' %}
+            내가 좋아한 글   |   
+        {% else %}
+            <a href="/list/answer/{{ subject }}/mylikes">내가 좋아한 글   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'newest' %}
+            최신순   |   
+        {% else %}
+            <a href="/list/answer/{{ subject }}/newest">최신순   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'manylike' %}
+            좋아요순   |   
+        {% else %}
+            <a href="/list/answer/{{ subject }}/manylike">좋아요순   </a>|   
+        {% endif %}
+    </h22>
+</div> 
+            
+<!--리스트 바-->
+<div id="card-wrapper">{% for answer in pageposts %}
+{% for key, value in subject_dict %}
+        {% if subject == 'all' or answer.question.subject == subject %}
+            {% if answer.question.subject == key %}
+                <div class="ListBar">
+                    {% if answer.photo %}
+                        <div class="main_box"><a href="{% url 'question_detail' answer.question.id %}">
+                            <img src="{{ answer.photo.url }}" style="width: auto; height: 150px; border-radius: 5px;"></a></div>
+                    {% else %}
+                        <div class="main_box"><a href="{% url 'question_detail' answer.question.id %}">IDEUS</a></div>
+                    {% endif %}
+                    <div class="Square3">
+                        <h24>{{ answer.title }}</h24><br>
+                        <h25>{{ answer.content | slice:":150" }}</h25>
+                    </div>
+                    <div class="main_box">{{ value }}</div>
+                    <div class="main_box" style="line-height: 75px;"><small>
+                        추천 : {{ answer.like }}개</small></div>
+                    </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}</div>
+
+<script src="{% static 'js/InfiniteScroll.js' %}"></script>
+<script type="text/javascript">
+    var postWrapperId = 'card-wrapper';
+    var paginatePath = '/list/question/all/newest?page=';
+    var lastPage = {{ pageposts.paginator.num_pages }};
+    new InfiniteScroll(paginatePath, postWrapperId, lastPage);
+</script>
+{% endblock %}

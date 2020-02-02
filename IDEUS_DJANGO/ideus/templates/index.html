@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>IDEUS</title>
+{% endblock %}
+
+{% block content %}
+<!--아이디어를 기다리는 글-->
+<div class="Square">
+    <!--제목-->
+    <div class="Ast_Square">
+        <h2>아이디어를 기다리는 글</h2></div>
+    {% for question in waiting_question|slice:":4" %}
+        <div class="Square1">
+            {% if question.photo %}
+                <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%;"></a>
+            {% else %}
+                <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%;"></a>
+            {% endif %}
+            <div class="Square2">&nbsp;&nbsp;&nbsp;{{ question.title }}</div>
+        </div>
+    {% endfor %}
+    <div class="tlt"><a href="/list/question/all/noanswer">더보기</a></div>
+</div>
+
+<!--아이디어를 받은글-->
+<div class="Square">
+    <!--제목-->
+    <div class="Ast_Square">
+        <h2>아이디어를 받은 글</h2></div>
+    {% for question in answer_question|slice:":4" %}
+        <div class="Square1">
+            {% if question.photo %}
+                <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%;"></a>
+            {% else %}
+                <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%;"></a>
+            {% endif %}
+            <div class="Square2">&nbsp;&nbsp;&nbsp;{{ question.title }}</div>
+        </div>
+    {% endfor %}
+    <div class="tlt"><a href="/list/question/all/existanswer">더보기</a></div>
+</div>
+{% endblock %}

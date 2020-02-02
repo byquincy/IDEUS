@@ -1,0 +1,162 @@
+{% extends "mypage_base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>내 페이지|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/user_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--좋아한 질문-->
+<div class="user_box">
+    <h3 style="font-size: 50px; color: #FD7A8D;">{{ user.username }}&nbsp;</h3>
+    <content>{{ user.Introduction }}</content>
+    <div class="bar">
+        <div class="bar" style="background: #FD7A8D; padding-left: 20px;" id="Reliability"></div>
+    </div>
+    <content id="Relibility_Detail"></content><br><br>
+    <content><a href="/user/{{ user.id }}/">공개적으로 공유되는 내 페이지 보기</a></content>
+</div>
+
+<div class="Square">
+    <div class="Ast_Square">
+        <h2>좋아한 아이디어 질문</h2></div>
+    {% if question_like %}
+        {% for question in question_like|slice:":4" %}
+            <div class="Square1">
+                {% if question.photo %}
+                    <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% else %}
+                    <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% endif %}
+                <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ question.title }}</h3></div>
+            </div>
+        {% endfor %}
+        <div class="tlt"><a href="/list/question/all/mylikes">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">질문한 아이디어에 좋아요를 눌러보세요!</div>
+    {% endif %}
+</div>
+
+<!--좋아한 답변-->
+<div class="Square">
+    <div class="Ast_Square">
+        <h2>좋아한 답변</h2></div>
+    {% if answer_like %}
+        {% for answer in answer_like|slice:":4" %}
+            <div class="Square1">
+                {% if answer.photo %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="{{ answer.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% else %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% endif %}
+                <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ answer.title }}</h3></div>
+            </div>
+        {% endfor %}
+        <div class="tlt"><a href="/list/answer/all/mylikes">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">답변에 좋아요를 눌러보세요!</div>
+    {% endif %}
+</div>
+
+<!--좋아한 결과물-->
+<div class="Square">
+    <div class="Ast_Square">
+        <h2>좋아한 결과물</h2></div>
+    {% if result_like %}
+        {% for result in result_like|slice:":4" %}
+            <div class="Square1" style="height: 90px;">
+               <br><br>
+                <a href="{% url 'question_detail' result.question.id %}"><div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ result.title }}</h3></div></a>
+                <a href="{{ result.link }}" target="_blank"><div class="Square2" style="background: #977bd0;"><h3 style="color: #FFFFFF">&nbsp;&nbsp;&nbsp;링크로 바로이동</h3></div></a>
+            </div>
+        {% endfor %}
+        <div class="tlt", style="margin-top: 120px;"><a href="/list/result/all/mylikes">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">결과물에 좋아요를 눌러보세요!</div>
+    {% endif %}
+</div>
+
+<!--내가쓴-->
+<hr>
+<!--내가쓴글-->
+<div class="Square">
+    <div class="Ast_Square">
+        <h2>내가 쓴 아이디어 질문</h2></div>
+    {% if my_question %}
+        {% for question in my_question|slice:":4" %}
+            <div class="Square1">
+                {% if question.photo %}
+                    <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% else %}
+                    <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% endif %}
+                <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ question.title }}</h3></div>
+            </div>
+        {% endfor %}
+        <div class="tlt"><a href="/list/question/all/my">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">아이디어를 추천받아보세요!</div>
+    {% endif %}
+</div>
+
+<!--내가쓴글-->
+<div class="Square">
+    <div class="Ast_Square">
+        <h2>내가 추천한 아이디어</h2></div>
+    {% if my_answer %}
+        {% for answer in my_answer|slice:":4" %}
+            <div class="Square1">
+                {% if answer.photo %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="{{ answer.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% else %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                {% endif %}
+                <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ answer.title }}</h3></div>
+            </div>
+        {% endfor %}
+        <div class="tlt"><a href="/list/answer/all/my">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">아이디어를 추천해보세요!</div>
+    {% endif %}
+</div>
+
+<!--내가쓴 결과물-->
+<div class="Square" style="padding-left: 0px; width: 100%">
+    <div class="Ast_Square">
+        <h2>내가 준 결과물</h2></div>
+    {% if my_result %}
+        {% for result in my_result|slice:":4" %}
+            <div class="Square1" style="height: 90px;">
+               <br><br>
+                <a href="{% url 'question_detail' result.question.id %}"><div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ result.title }}</h3></div></a>
+                <a href="{{ result.link }}" target="_blank"><div class="Square2" style="background: #977bd0;"><h3 style="color: #FFFFFF">&nbsp;&nbsp;&nbsp;링크로 바로이동</h3></div></a>
+            </div>
+        {% endfor %}
+        <div class="tlt", style="margin-top: 120px;"><a href="/list/result/all/my">더보기</a></div>
+    {% else %}
+        <div class="tlt", style="margin-top: 100px; color: #FFFFFF;">참고한 아이디어에 결과물을 보내보세요!</div>
+    {% endif %}
+</div>
+
+<script>
+    const Relibility_Detail = document.getElementById("Relibility_Detail");
+    const bar = document.getElementById("Reliability");
+    const Reliability = Math.round({{ user.my_result }} / {{ user.my_question }} * 100)
+                
+    bar.innerHTML = "신뢰도 : " + Reliability + "%";
+    if (isNaN(Reliability)) {
+        bar.innerHTML = "신뢰도 : 0%";
+        bar.style.width = "0%";
+    } else {
+        bar.innerHTML = "신뢰도 : " + Reliability + "%";
+        if ( Reliability < 100 ) {
+            bar.style.width = Reliability + "%";
+        } else {
+            bar.style.width = "100%";
+        }
+    }
+    
+    Relibility_Detail.innerHTML = "질문" + {{ user.my_question }} + "/결과물" + {{ user.my_result }};
+</script>
+{% endblock %}

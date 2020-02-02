@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>{{ detail_user.username }}|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/user_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="user_box">
+    <h3 style="font-size: 50px; color: #FD7A8D;">{{ detail_user.username }}&nbsp;</h3>
+    <content>{{ detail_user.Introduction }}</content>
+    
+    <div class="bar">
+        <div class="bar" style="width: 100%; background: #FD7A8D; padding-left: 20px;" id="Reliability">
+            신뢰도 : 50%
+        </div>
+    </div>
+    <content id="Relibility_Detail"></content>
+    <content><br>{{ favorite_subject }}에 가장 관심이 많으시네요</content>
+    
+    <hr>
+    <h1>공유한 결과물</h1>
+    {% if user_result %}
+        {% for result in user_result %}
+            <a href="/question/{{ result.question.id }}"><div class="video_box">
+                {% if 'youtube' in result.link %}
+                    <iframe src="{{ result.link }}" width="320" height="180" frameborder="0" style="border-radius: 5px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% elif 'vimeo' in result.link%}
+                    <iframe src="{{ result.link }}" width="320" height="180" frameborder="0" style="border-radius: 5px;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                {% else %}
+                    <a href="{{ result.link }}" target="_blank"><div class="default_box">{{ result.link }}</div></a>
+                {% endif %}
+                &nbsp;&nbsp;{{ result.title }}
+            </div></a>
+        {% endfor %}
+    {% else %}
+        <content>아직 사용자가 결과물을 업로드하지 않았어요</content>
+    {% endif %}
+    
+    <h1>공유한 아이디어</h1>
+    {% if user_answer %}
+        {% for answer in user_answer%}
+            <div class="Square1" style="margin-top: 0px;">
+                {% if answer.photo %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="{{ answer.photo.url }}" style="width: auto; max-height: 100%;"></a>
+                {% else %}
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="/media/ideus_basic.jpg" style="width: auto; max-height: 100%;"></a>
+                {% endif %}
+                <div class="Square2">&nbsp;&nbsp;&nbsp;{{ answer.title }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <content>아직 사용자가 답변을 업로드하지 않았어요</content>
+    {% endif %}
+</div>
+<!--스크립트-->
+<script>
+    const Relibility_Detail = document.getElementById("Relibility_Detail");
+    const bar = document.getElementById("Reliability");
+    const Reliability = Math.round({{ user.my_result }} / {{ user.my_question }} * 100)
+    
+    if (isNaN(Reliability)) {
+        bar.innerHTML = "신뢰도 : 0%";
+        bar.style.width = "0%";
+    } else {
+        bar.innerHTML = "신뢰도 : " + Reliability + "%";
+        if ( Reliability < 100 ) {
+            bar.style.width = Reliability + "%";
+        } else {
+            bar.style.width = "100%";
+        }
+    }
+    
+    Relibility_Detail.innerHTML = "질문" + {{ detail_user.my_question }} + "/결과물" + {{ detail_user.my_result }};
+</script>
+{% endblock %}

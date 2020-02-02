@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>{{ question.title }}|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/question_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="q_box">
+    Q.
+    <tlt>{{ question.title }}</tlt>
+    <cts><small><a href="{% url 'user_detail' question.userid %}">By.{{ question.username }}</a></small></cts><br>
+    
+    <cts style="font-size: 25px;">{{ question.content}}</cts><br>
+    {% if question.photo %}
+        <a href="{{ question.photo.url }}" target="_blank"><img src="{{ question.photo.url }}" style="width: auto; height:180px; border-radius: 5px;"></a>
+    {% endif %}
+    <cts><small><a href="{% url 'question_like' question.id %}">좋아요|{{ question.like }}</a></small></cts>
+    <hr><cts>{{ question.subject }}/{{ question.created_at }}</cts>
+    {% for result in question.result_set.all %}
+        <hr>
+        Production.
+        <tlt>{{ result.title }}</tlt>
+        <cts><small><a href="{% url 'user_detail' result.userid %}">By.{{ result.username }}</a></small></cts><br>
+        <cts>{{ result.content }}</cts><br>
+    
+        {% if 'youtube' in result.link %}
+            <iframe src="{{ result.link }}" width="320" height="180" frameborder="0" style="border-radius: 5px;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% elif 'vimeo' in result.link%}
+            <iframe src="{{ result.link }}" width="320" height="180" frameborder="0" style="border-radius: 5px;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        {% else %}
+            <cts><small><a href="{{ result.link }}" target="_blank">{{ result.link }}</a></small></cts><br>
+        {% endif %}
+        <cts><small><a href="{% url 'result_like' result.id %}">좋아요|{{ result.like }}</a></small></cts>
+    {% endfor %}
+    <hr><hr>
+                
+    {% for answer in question.answer_set.all %}
+        A.
+        <tlt>{{ answer.title }}</tlt>
+        <cts><small><a href="{% url 'user_detail' answer.userid %}">By.{{ answer.username }}</a></small></cts><br>
+    
+        <cts>{{ answer.content }}</cts><br>
+        {% if answer.photo %}
+                <a href="{{ answer.photo.url }}" target="_blank"><img src="{{ answer.photo.url }}" style="width: auto; height:180px; border-radius: 5px;"></a>
+        {% endif %}
+        <cts><small><a href="{% url 'answer_like' answer.id %}">좋아요|{{ answer.like }}</a></small></cts>
+        <hr>
+    {% endfor %}
+    {% if user.id %}
+        <cts><a href="{% url 'answer_new' question.pk %}">아이디어 주기</a> | 
+        <a href="{% url 'result_new' question.pk %}">결과물 제출하기</a></cts>
+    {% endif %}
+</div>
+{% endblock %}

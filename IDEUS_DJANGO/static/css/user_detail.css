@@ -1,0 +1,81 @@
+.bar {
+    display: inline-block;
+    box-sizing: border-box;
+    
+    text-align: left;
+    background: #977BD0;
+    border-radius: 5px;
+    
+    width: 100%;
+    height: 50px;
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:30px;
+    color: #FFFFFF;
+    
+    overflow: visible;
+    white-space: nowrap;
+}
+
+.user_box {
+  box-sizing: border-box;
+  float: left;
+  text-align:left;                     /*글자 위치*/
+  background:#3F3566;                        /*배경색*/
+  border-radius: 5px;                      /*라운드*/
+  /*크기*/
+  width: 100%;
+  height: auto;
+    
+  /*여백*/
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+    
+  /*글씨*/
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:10px;
+  color: #FD7A8D;
+}
+
+.video_box {
+    display: inline-block;
+    
+    background: #977BD0;
+    border-radius: 5px;
+    
+    width: 320px;
+    height: 220px;
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:20px;
+    color: #FFFFFF;
+    text-align: left;
+    
+    margin-bottom: 30px;
+    margin-left: 30px;
+    overflow: hidden;
+}
+.default_box {
+    background: #3F3566;
+    border-radius: 5px;
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    
+    width: 320px;
+    height: 180px;
+}
+
+h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:25px;
+    color: #FD7A8D;
+}
+
+content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:20px;
+    color: #ffffff;
+}

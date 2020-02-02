@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>결과물 제출|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+<h3 style="color: #3F3566"><small>※비메오와 유튜브링크를 지원합니다<br>
+    유튜브또는 비메오링크를 사용할경우 맨뒤에 아이디만 남게 해주세요<br>
+    ❌https://www.youtube.com/watch?v=ABCDEFGHIJ&feature=youtu.be<br>
+    ⭕https://www.youtube.com/watch?v=ABCDEFGHIJ</small></h3><br>
+<hr color = "#3F3566">
+{% if messages %}
+    <form_title>
+	{% for message in messages %}
+        {{ message.message }}<br>
+	{% endfor %}
+    </form_title>
+    <hr color = "#3F3566">
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <form_title><label for="{{form.title.id_for_label}}">제목</label></form_title>
+    <input type="text" class="form-control" id="{{form.title.id_for_label}}" 
+            placeholder="제목을 입력해주세요" name="{{form.title.name}}">
+    
+    <form_title><br><label for="{{form.link.id_for_label}}">링크</label></form_title>
+    <input type="url" class="form-control" id="{{form.link.id_for_label}}" 
+            placeholder="링크를 입력해주세요" name="{{form.link.name}}">
+    
+    <form_title><br><label for="{{form.content.id_for_label}}">작품설명</label></form_title>
+    <textarea name="{{form.content.name}}" cols="40" rows="10" id="{{form.content.id_for_label}}" placeholder="작품설명이 있다면 입력해주세요"></textarea>
+    
+    <input type="submit" value="결과물 보내기">
+</form>
+{% endblock %}

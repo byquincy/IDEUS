@@ -1,0 +1,68 @@
+A:link {text-decoration:none; color: #9f9ab2;} 
+A:visited {text-decoration:none; color: #9f9ab2;}
+A:hover {text-decoration:none; color: #FFFFFF;}
+img{
+    position: relative;
+}
+/*제목*/
+
+.tlt{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:25px;
+  color: #9f9ab2;
+  display: inline;
+}
+
+.q_box {
+  float: left;
+  text-align:left;                     /*글자 위치*/
+  background:#3F3566;                        /*배경색*/
+  border-radius: 5px;                      /*라운드*/
+  /*크기*/
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+    
+  /*여백*/
+  padding: 30px;
+  margin-bottom: 20px;
+    
+  /*글씨*/
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:50px;
+  line-height: 35px;
+  color: #FD7A8D;
+}
+
+/*제목들*/
+h1{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:25px;
+  color: #ffffff;
+  display: inline;
+}
+h2{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:25px;
+  color: #ffffff;
+  display: inline;
+}
+h3{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:25px;
+  color: #ffffff;
+  display: inline;
+}
+/*내용들*/
+tlt {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:35px;
+  color: #ffffff;
+  display: inline;
+}
+cts {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  color: #ffffff;
+  display: inline;
+}

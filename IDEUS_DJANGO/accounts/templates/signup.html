@@ -1,0 +1,42 @@
+{% load static %}
+
+<html>
+	<head>
+        <title>회원가입|IDEUS</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}?after">
+		<link rel="stylesheet" href="{% static 'css/login.css' %}?after">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+        <div id="ma">
+            <script>
+                var el = document.getElementById("ma");
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    el.style.width = '100%';
+                } else {
+                    el.style.width = '80%';
+                }
+            </script>
+            
+            <div class="MainTitle"><a href="/" style="color:#FD7A8D;">IDEUS</a></div>
+            <br>
+            <div class="container">
+                <form method="POST" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <clt style="color: #3F3566;">ID</clt>
+                    <br>
+                    <input name="username" type="text">
+                    <br>
+                    <clt style="color: #3F3566;">PassWord</clt>
+                    <br>
+                    <input name="password1" type="password">
+                    <clt style="color: #3F3566;">Confirm PassWord:</clt>
+                    <br>
+                    <input name="password2" type="password">
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="Sign Up">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

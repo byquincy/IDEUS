@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>{{ title }}|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--모델 종류-->
+<div class="Square">
+	<h22>
+        질문   |   
+        <a href="/list/answer/{{ subject }}/{{ sorting }}">답변   </a>|   
+        <a href="/list/result/{{ subject }}/{{ sorting }}">결과물   </a>|   
+    </h22>
+</div>
+<!--태그박스-->
+<div class="Square"> 
+	<h22>
+        {% if subject == 'all' %}
+            모두   |   
+        {% else %}
+            <a href="/list/question/all/{{ sorting }}">모두   |   </a>
+        {% endif %}
+        
+        {% for key, value in subject_dict %}
+            {% if subject == key %}
+                {{ value }}   |   
+            {% else %}
+                <a href="/list/question/{{ key }}/{{ sorting }}">{{ value }}   </a>|   
+            {% endif %}
+        {% endfor %}
+    </h22>
+</div>
+<!--정렬기준-->
+<div class="Square">
+    <h22>
+        {% if sorting == 'my' %}
+            내가 쓴 글   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/my">내가 쓴 글   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'mylikes' %}
+            내가 좋아한 글   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/mylikes">내가 좋아한 글   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'newest' %}
+            최신순   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/newest">최신순   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'manylike' %}
+            좋아요순   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/manylike">좋아요순   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'manyanswer' %}
+            답변수순   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/manyanswer">답변수순   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'existanswer' %}
+            아이디어를 받은 글   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/existanswer">아이디어를 받은 글   </a>|   
+        {% endif %}
+        
+        {% if sorting == 'noanswer' %}
+            아이디어를 기다리는 글   |   
+        {% else %}
+            <a href="/list/question/{{ subject }}/noanswer">아이디어를 기다리는 글   </a>|   
+        {% endif %}
+    </h22>
+</div> 
+            
+<!--리스트 바-->
+<div id="card-wrapper">{% for question in pageposts %}
+    <div class="ListBar">
+        {% if question.photo %}
+            <div class="main_box"><a href="{% url 'question_detail' question.id %}">
+                <img src="{{ question.photo.url }}" style="width: auto; height: 150px; border-radius: 5px;"></a></div>
+        {% else %}
+            <div class="main_box"><a href="{% url 'question_detail' question.id %}">IDEUS</a></div>
+        {% endif %}
+        <div class="Square3">
+            <h24>{{ question.title }}</h24><br>
+            <h25>{{ question.content | slice:":150" }}</h25>
+        </div>
+        <div class="main_box">{% for key, value in subject_dict %}
+            {% if question.subject == key %}
+                {{ value }}
+            {% endif %}
+        {% endfor %}</div>
+        <div class="main_box" style="line-height: 75px;"><small>
+            답변 : {{ question.answers }}개<br>
+            추천 : {{ question.like }}개</small></div>
+    </div>
+{% endfor %}</div>
+
+<script src="{% static 'js/InfiniteScroll.js' %}"></script>
+<script type="text/javascript">
+    var postWrapperId = 'card-wrapper';
+    var paginatePath = '/list/question/all/newest?page=';
+    var lastPage = {{ pageposts.paginator.num_pages }};
+    new InfiniteScroll(paginatePath, postWrapperId, lastPage);
+</script>
+{% endblock %}

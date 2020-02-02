@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block commands %}
+<title>아이디어 주기|IDEUS</title>
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+    <hr color = "#3F3566">
+    <form_title>
+	{% for message in messages %}
+        {{ message.message }}<br>
+	{% endfor %}
+    </form_title>
+    <hr color = "#3F3566">
+{% endif %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <form_title><label for="{{form.title.id_for_label}}">제목</label></form_title>
+    <input type="text" class="form-control" id="{{form.title.id_for_label}}" 
+            placeholder="제목을 입력해주세요" name="{{form.title.name}}">
+    
+    <form_title><label for="{{form.content.id_for_label}}">내용</label></form_title>
+    <textarea name="{{form.content.name}}" cols="40" rows="10" id="{{form.content.id_for_label}}" placeholder="내용을 입력해주세요"></textarea>
+    
+    <form_title style="color: #C6C3D1;"><label for="{{form.photo.id_for_label}}">이미지</label></form_title>
+    <input type="file" name="{{ form.photo.name }}" accept="image/*" id="{{form.photo.id_for_label}}" style="background: #AC95D9;">
+    
+    <input type="submit" value="아이디어 주기">
+</form>
+{% endblock %}

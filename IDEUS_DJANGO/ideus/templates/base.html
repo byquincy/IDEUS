@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="icon" href="{% static 'basic/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
+        {% block commands %}{% endblock %}
+	</head>
+	<body>
+		<div id="ma">
+            <script>
+                var el = document.getElementById("ma");
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    el.style.width = '100%';
+                } else {
+                    el.style.width = '80%';
+                }
+            </script>
+            
+		    <div class="MainTitle"><a href="{% url 'index' %}" style="color:#FD7A8D;">IDEUS</a></div>
+		    <div class="relative1">
+                <div class="tlt" style="margin-left: 0px;"><a href="/list/question/all/newest">&nbsp;&nbsp;아이디어 보기</a></div>
+                {% if user.username %}
+                    <h6>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</h6>
+		            <h7><a href="{% url 'question_new' %}" target="blank">아이디어 추천받기</a></h7>
+                    <div style="float: right"><h7><a href="{% url 'mypage' %}">{{ user.username }}님 환영합니다!&nbsp;&nbsp;</a></h7></div>
+                {% else %}
+                    <div style="float: right"><h7><a href="{% url 'login' %}">로그인해주세요&nbsp;&nbsp;</a></h7></div>
+                {% endif %}
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            <hr color = "#FD7A8D" size = "10px" width="100%">
+            Connect to quincy0430@gmail.com OR nabinyang@gmail.com<br>
+            Created by Injung.Kim and Nabin.Yang<br>
+            Copyright IDEUS. All rights reserved.<br>
+        </footer>
+        
+    </body>
+</html>
