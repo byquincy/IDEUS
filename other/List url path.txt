@@ -1,0 +1,18 @@
+#modeltype(모델 종류)
+질문	- question
+답변	- answer
+결과물	- result
+
+#subject(주제 종류)
+모든주제	- all
+그외	- constants.py의 SUBJECT_DICT 참조
+
+#sorting(정렬기준)
+내 게시물	- my
+내 좋아요	- mylikes
+최신순	- newest
+좋아요순	- manylike
+---질문에만 해당--
+답변순	- manyanswer
+답변존재	- existanswer
+답변비존재	- noanswer
