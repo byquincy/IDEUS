@@ -1,6 +1,6 @@
 # IDEUS
 Django-based idea sharing community
-<img src="https://lh5.googleusercontent.com/PgxrrSnIYAHq0s5xLK-eXj5bLS8VekBX4Krgdkd2WABnyhnvGBtnfbQ8huNpbLu-n48Hd9mNwg-iVK95oRid=w1920-h923"></img>
+<img src="https://github.com/insta0430/IDEUS/blob/master/other/IDEUS%20Logo.gif?raw=true"></img>
 <br>(Translation quality may be reduced because it is translated by a translator)<br>
 Welcome to IDEUS!<br>
 IDEUS is a compound word of IDEAS + US, It means the idea of making together
@@ -46,7 +46,7 @@ Pillow library 7.0.0<br>
 <hr>
 <h1>IDEUS(한국어소개)</h1>
 장고를 통한 아이디어 공유 커뮤니티
-<img src="https://lh5.googleusercontent.com/PgxrrSnIYAHq0s5xLK-eXj5bLS8VekBX4Krgdkd2WABnyhnvGBtnfbQ8huNpbLu-n48Hd9mNwg-iVK95oRid=w1920-h923"></img>
+<img src="https://github.com/insta0430/IDEUS/blob/master/other/IDEUS%20Logo.gif?raw=true"></img>
 <br>IDEUS에 오신 것을 환영합니다!<br>
 IDEUS는 IDEAS+US의 합성어로 함께하는 아이디어라는 뜻을 담고있습니다.<br>
 IDEUS는 아이디어를 공유할 수 있는 커뮤니티이며 백엔드는 django로, 프론트엔드는 html, js, css로 작성되었습니다.
