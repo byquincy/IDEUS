@@ -22,13 +22,7 @@
 		    <div class="MainTitle"><a href="{% url 'index' %}" style="color:#FD7A8D;">IDEUS</a></div>
 		    <div class="relative1">
                 <div class="tlt" style="margin-left: 0px;"><a href="/list/question/all/newest">&nbsp;&nbsp;아이디어 보기</a></div>
-                {% if user.username %}
-                    <h6>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;</h6>
-		            <h7><a href="{% url 'question_new' %}" target="blank">아이디어 추천받기</a></h7>
-                    <div style="float: right"><h7><a href="{% url 'mypage' %}">{{ user.username }}님 환영합니다!&nbsp;&nbsp;</a></h7></div>
-                {% else %}
-                    <div style="float: right"><h7><a href="{% url 'login' %}">로그인해주세요&nbsp;&nbsp;</a></h7></div>
-                {% endif %}
+                <div style="float: right"><h7><a href="{% url 'logout' %}">로그아웃&nbsp;&nbsp;</a></h7></div>
             </div>
             {% block content %}{% endblock %}
         </div>

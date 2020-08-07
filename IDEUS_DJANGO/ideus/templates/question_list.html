@@ -36,16 +36,20 @@
 <!--정렬기준-->
 <div class="Square">
     <h22>
-        {% if sorting == 'my' %}
-            내가 쓴 글   |   
-        {% else %}
-            <a href="/list/question/{{ subject }}/my">내가 쓴 글   </a>|   
+        {% if user.username %}
+            {% if sorting == 'my' %}
+                내가 쓴 글   |   
+            {% else %}
+                <a href="/list/question/{{ subject }}/my">내가 쓴 글   </a>|   
+            {% endif %}
         {% endif %}
         
-        {% if sorting == 'mylikes' %}
-            내가 좋아한 글   |   
-        {% else %}
-            <a href="/list/question/{{ subject }}/mylikes">내가 좋아한 글   </a>|   
+        {% if user.username %}
+            {% if sorting == 'mylikes' %}
+                내가 좋아한 글   |   
+            {% else %}
+                <a href="/list/question/{{ subject }}/mylikes">내가 좋아한 글   </a>|   
+            {% endif %}
         {% endif %}
         
         {% if sorting == 'newest' %}

@@ -24,7 +24,6 @@ def user_detail(request, user_id):
     like_subject = list()
     for i in detail_user.subject_like:
         like_subject.append(ord(i))
-    like_subject[0] = 0
     favorite_subject = SUBJECT_DICT[like_subject.index(max(like_subject))]
         
     return render(request, 'user_detail.html', {
@@ -245,6 +244,3 @@ def result_like(request, pk):
         result.like += 1
     result.save()
     return redirect('question_detail', result.question.id)
-
-/*def question_delete():
-    */

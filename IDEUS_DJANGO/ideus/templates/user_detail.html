@@ -12,12 +12,12 @@
     <content>{{ detail_user.Introduction }}</content>
     
     <div class="bar">
-        <div class="bar" style="width: 100%; background: #FD7A8D; padding-left: 20px;" id="Reliability">
-            신뢰도 : 50%
+        <div class="bar" style="width: 10%; background: #FD7A8D; padding-left: 20px;" id="Reliability">
+            신뢰도 : 
         </div>
     </div>
     <content id="Relibility_Detail"></content>
-    <content><br>{{ favorite_subject }}에 가장 관심이 많으시네요</content>
+    <content><br><br>이분은 {{ favorite_subject }}에 가장 관심이 많으시네요</content>
     
     <hr>
     <h1>공유한 결과물</h1>
@@ -58,7 +58,7 @@
 <script>
     const Relibility_Detail = document.getElementById("Relibility_Detail");
     const bar = document.getElementById("Reliability");
-    const Reliability = Math.round({{ user.my_result }} / {{ user.my_question }} * 100)
+    const Reliability = Math.round({{ detail_user.my_result }} / {{ detail_user.my_question }} * 100)
     
     if (isNaN(Reliability)) {
         bar.innerHTML = "신뢰도 : 0%";

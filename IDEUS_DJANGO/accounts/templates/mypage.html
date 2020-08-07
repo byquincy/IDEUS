@@ -14,7 +14,8 @@
     <div class="bar">
         <div class="bar" style="background: #FD7A8D; padding-left: 20px;" id="Reliability"></div>
     </div>
-    <content id="Relibility_Detail"></content><br><br>
+    <content id="Relibility_Detail"></content>
+    <content><br><br>{{ favorite_subject }}에 가장 관심이 많으시네요</content><br>
     <content><a href="/user/{{ user.id }}/">공개적으로 공유되는 내 페이지 보기</a></content>
 </div>
 
@@ -27,7 +28,7 @@
                 {% if question.photo %}
                     <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% else %}
-                    <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                    <a href="{% url 'question_detail' question.id %}"><img src="/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% endif %}
                 <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ question.title }}</h3></div>
             </div>
@@ -48,7 +49,7 @@
                 {% if answer.photo %}
                     <a href="{% url 'question_detail' answer.question.id %}"><img src="{{ answer.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% else %}
-                    <a href="{% url 'question_detail' answer.question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% endif %}
                 <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ answer.title }}</h3></div>
             </div>
@@ -89,7 +90,7 @@
                 {% if question.photo %}
                     <a href="{% url 'question_detail' question.id %}"><img src="{{ question.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% else %}
-                    <a href="{% url 'question_detail' question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                    <a href="{% url 'question_detail' question.id %}"><img src="/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% endif %}
                 <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ question.title }}</h3></div>
             </div>
@@ -110,7 +111,7 @@
                 {% if answer.photo %}
                     <a href="{% url 'question_detail' answer.question.id %}"><img src="{{ answer.photo.url }}" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% else %}
-                    <a href="{% url 'question_detail' answer.question.id %}"><img src="https://ideus.run.goorm.io/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
+                    <a href="{% url 'question_detail' answer.question.id %}"><img src="/media/ideus_basic.jpg" style="width: auto; max-height: 100%; float: middle;"></a>
                 {% endif %}
                 <div class="Square2"><h3>&nbsp;&nbsp;&nbsp;{{ answer.title }}</h3></div>
             </div>

@@ -7,7 +7,7 @@ class User(AbstractUser):
     like_answer = models.ManyToManyField(Answer, blank=True)
     like_result = models.ManyToManyField(Result, blank=True)
     
-    Introduction = models.CharField(max_length=100)
+    Introduction = models.CharField(max_length=100, blank=True, null=True)
     my_question = models.IntegerField(default=0)
     my_result = models.IntegerField(default=0)
     
