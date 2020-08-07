@@ -8,7 +8,8 @@ urlpatterns = [
     
     
     path('question/<int:pk>/', views.question_detail, name='question_detail'),
-    
+    path('question/', views.question_delete, name='question_delete'),
+ 
     path('new/question/', views.question_new, name='question_new'),
     path('new/answer/<int:pk>/', views.answer_new, name='answer_new'),
     path('new/result/<int:pk>/', views.result_new, name='result_new'),
@@ -18,4 +19,5 @@ urlpatterns = [
     path('like/result/<int:pk>/', views.result_like, name='result_like'),
     
     path('user/<int:user_id>/', views.user_detail, name='user_detail'),
+
 ]
