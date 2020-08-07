@@ -6,6 +6,7 @@ Welcome to IDEUS!<br>
 IDEUS is a compound word of IDEAS + US, It means the idea of making together
 IDEUS is a web page for sharing ideas, the back end is written in Django, and the front end is written in html, js, css
 
+
 <h2>Introduce</h2>
 This web page was awarded the Silver Prize at the Korea Cord Pair SW Builder Challenge Middle School<br>
 This web page was developed by Yang Na-bin and Kim In-jung.
