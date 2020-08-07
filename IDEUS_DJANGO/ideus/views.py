@@ -245,3 +245,6 @@ def result_like(request, pk):
         result.like += 1
     result.save()
     return redirect('question_detail', result.question.id)
+
+/*def question_delete():
+    */
